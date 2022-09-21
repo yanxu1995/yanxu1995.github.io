@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Unity_01 基础概念与材质 |    YAN,Xu&#39;s TecBlog.</title>
+  <title>  Unity-03 |    YAN,Xu&#39;s TecBlog.</title>
   <meta name="description" content="YAN,Xu&#39;s TecBlog">
   <!-- 标签页图标 -->
   
@@ -117,8 +117,8 @@
 <article class="post-inner">
   <div class="post-content-outer">
     <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">Unity_01 基础概念与材质</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Sep 19 2022</div>
+      <div class="post-title animate__animated  animate__fadeInUp">Unity-03</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Sep 21 2022</div>
       
     </div>
     <div class="post-content-inner">
@@ -128,25 +128,85 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="Unity引擎基础"><a href="#Unity引擎基础" class="headerlink" title="Unity引擎基础"></a>Unity引擎基础</h1><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul>
-<li>project → Scene → GameObject → Component(功能)</li>
-<li>Assets文件夹对应Unity中的project面板。(工程本体)</li>
-<li>父物体与子物体<ul>
-<li>父物体 &#x3D; 子物体 + 子物体 + …</li>
-<li>子物体的坐标是相对于父物体的坐标。</li>
+        <h1 id="Unity引擎基础"><a href="#Unity引擎基础" class="headerlink" title="Unity引擎基础"></a>Unity引擎基础</h1><h2 id="InstantOC"><a href="#InstantOC" class="headerlink" title="InstantOC"></a>InstantOC</h2><ul>
+<li><p>渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。</p>
+<ul>
+<li><p>游戏（CPU）~： 判断哪那些物体需要被渲染。（视锥范围内且没有被Mask掉。）</p>
+</li>
+<li><p><del>图形API</del>： DX（windows）或移动端（OpenGL）</p>
+</li>
+<li><p><del>顶点处理</del>：</p>
+<ul>
+<li>从CPU处接收模型顶点数据</li>
+<li>坐标系转换</li>
+</ul>
+</li>
+<li><p><del>图元装配</del> ：</p>
+<ul>
+<li>组装面： 连接相邻的顶点，绘制为三角面。</li>
+</ul>
+</li>
+<li><p><del>光栅化</del>： </p>
+<ul>
+<li>计算三角面上的像素，并为后面着色阶段提供合理的插值参数。</li>
+</ul>
+</li>
+<li><p><del>像素处理</del>： </p>
+<ul>
+<li>对每个像素区域进行着色</li>
+<li>写入到缓存中</li>
+</ul>
+</li>
+<li><p><del>缓存</del>： </p>
+<ul>
+<li>一个存储像素数据的内存块，可以细分为帧缓存与深度缓存等。</li>
+<li>帧缓存： 存储每个像素的色彩，即选然后的图像。帧缓存常常在显存中，显卡不断读取并输出到屏幕。</li>
+<li>深度缓存z-buffer： 存储像素的深度信息，即物体到摄像机的距离。光栅化时便计算各像素的深度值，如果新的深度值比现有值更近，则像素颜色被写到帧缓存，并替换深度缓存。</li>
+</ul>
+</li>
+<li><p>~显卡：从帧缓存中读取数据并显示到屏幕。</p>
+</li>
+<li><p>DrawCall： 每帧调用显卡渲染物体的次数。Stats - Batches</p>
+</li>
+</ul>
+</li>
+<li><p>OcclusionCulling</p>
+<ul>
+<li>即时遮挡剔除： 当物体被送进渲染流水线之前，将摄像机视角看不到的物体进行剔除，从而减少了每帧渲染数据量，提高渲染性能。</li>
+<li>步骤（InstantOC）<ul>
+<li>1.创建层</li>
+<li>2.为游戏物体指定层（将参与遮挡剔除）与标签（将自动附加IOCod脚本）</li>
+<li>3.物体添加碰撞器Collider组件</li>
+<li>4.摄像机附加脚本IOCcam</li>
+</ul>
+</li>
+<li>属性<ul>
+<li>LayerMask： 参与遮挡剔除的游戏对象层</li>
+<li>IOCTag： 将为指定标签的游戏对象自动添加IOCIod脚本对象。</li>
+<li>Samples： 每帧摄像机发射的射线数目。数量多剔除效果好，但性能开销大。通常150-500之间。</li>
+<li>RaysFOV： 射线视野，应大于摄像机视野FOV。</li>
+<li>ViewDistance： 视图距离，射线长度。</li>
+<li>HideDelay： 延迟隐藏，当物体被剔除时延迟的帧数，建议50-100之间。</li>
+<li>PreCull Check： 检查采集信息，建议勾选，提高剔除效率。</li>
+<li><del>RealtimeShadows： 实时阴影，如果场景需要实时阴影建议启用，确保剔除物体显示正常的阴影。</del>不建议使用，会丢失材质。</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>CPU负载升高</li>
 </ul>
 </li>
 </ul>
-<h2 id="材质-Material"><a href="#材质-Material" class="headerlink" title="材质 Material"></a>材质 Material</h2><ul>
-<li>材质：物体的质地，指色彩&#x2F;<em><strong>纹理</strong></em>&#x2F;光滑度&#x2F;透明度&#x2F;反射率&#x2F;折射率&#x2F;发光度等。实际就是<em><strong>shader</strong></em>的实例。<ul>
-<li>材质在Project中存放&#x2F;新建</li>
-<li>在MashRenderer-Materials中设置物体的材质</li>
-<li>RenderingMode中设置材质的属性（透明Transparent&#x2F;镂空Cutout&#x2F;渐变Fade&#x2F;等）</li>
+</li>
+<li><p>LOD</p>
+<ul>
+<li>多细节层次LevelsOfDetail<ul>
+<li>LOD技术指根据物体模型的节点在显示环境中所处的位置和重要度，决定物体渲染的资源分配，降低非重要物体的面数和细节度，从而获得高效率的渲染运算。</li>
 </ul>
 </li>
-<li><em><strong>shader</strong></em>着色器：专门用来渲染3D图形的技术，可以使纹理以某种方式展现。实际就是一段嵌入到渲染管线中的程序，可以控制GPU运算图像效果的算法。</li>
-<li><em><strong>纹理</strong></em>：附加到物体表面的贴图。(albedo中设置)</li>
-<li>Shader → Material（Texture&#x2F;Color） → GameObject</li>
+<li>步骤</li>
+<li>属性</li>
+</ul>
+</li>
 </ul>
 
         <!-- 分类文章 -->
@@ -157,7 +217,7 @@
             
             
               
-                <li class="me base">
+                <li class="base">
                   <a  href="/2022/09/19/Unity-01/" class="post-categoris-bottom-link">
                   Unity_01 基础概念与材质
                 </a>
@@ -181,7 +241,7 @@
             
             
               
-                <li class="base">
+                <li class="me base">
                   <a  href="/2022/09/21/Unity-03/" class="post-categoris-bottom-link">
                   Unity-03
                 </a>
@@ -199,7 +259,7 @@
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="space-toc-text">基础概念</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%9D%90%E8%B4%A8-Material"><span class="space-toc-text">材质 Material</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#InstantOC"><span class="space-toc-text">InstantOC</span></a></li></ol>
            </div>
         
       </div>

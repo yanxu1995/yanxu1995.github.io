@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Unity_01 基础概念与材质 |    YAN,Xu&#39;s TecBlog.</title>
+  <title>  Unity-02 Shader与摄像机Camera |    YAN,Xu&#39;s TecBlog.</title>
   <meta name="description" content="YAN,Xu&#39;s TecBlog">
   <!-- 标签页图标 -->
   
@@ -117,8 +117,8 @@
 <article class="post-inner">
   <div class="post-content-outer">
     <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">Unity_01 基础概念与材质</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Sep 19 2022</div>
+      <div class="post-title animate__animated  animate__fadeInUp">Unity-02 Shader与摄像机Camera</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Sep 20 2022</div>
       
     </div>
     <div class="post-content-inner">
@@ -128,25 +128,71 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="Unity引擎基础"><a href="#Unity引擎基础" class="headerlink" title="Unity引擎基础"></a>Unity引擎基础</h1><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul>
-<li>project → Scene → GameObject → Component(功能)</li>
-<li>Assets文件夹对应Unity中的project面板。(工程本体)</li>
-<li>父物体与子物体<ul>
-<li>父物体 &#x3D; 子物体 + 子物体 + …</li>
-<li>子物体的坐标是相对于父物体的坐标。</li>
+        <h1 id="Unity引擎基础"><a href="#Unity引擎基础" class="headerlink" title="Unity引擎基础"></a>Unity引擎基础</h1><h2 id="材质-Material"><a href="#材质-Material" class="headerlink" title="材质 Material"></a>材质 Material</h2><ul>
+<li>Shader<ul>
+<li>物理着色器（StandardSpaecularSetup）<ul>
+<li>基于物理特性的Shader是Unity5的重大革新之一，所谓物理着色器（Physically Based Shading，PBS）就是遵循物理学的能量守恒定律，可以创建出不同光照环境下都接近真实的效果。</li>
 </ul>
 </li>
 </ul>
-<h2 id="材质-Material"><a href="#材质-Material" class="headerlink" title="材质 Material"></a>材质 Material</h2><ul>
-<li>材质：物体的质地，指色彩&#x2F;<em><strong>纹理</strong></em>&#x2F;光滑度&#x2F;透明度&#x2F;反射率&#x2F;折射率&#x2F;发光度等。实际就是<em><strong>shader</strong></em>的实例。<ul>
-<li>材质在Project中存放&#x2F;新建</li>
-<li>在MashRenderer-Materials中设置物体的材质</li>
-<li>RenderingMode中设置材质的属性（透明Transparent&#x2F;镂空Cutout&#x2F;渐变Fade&#x2F;等）</li>
+</li>
+</ul>
+<h2 id="摄像机-Camera"><a href="#摄像机-Camera" class="headerlink" title="摄像机 Camera"></a>摄像机 Camera</h2><ul>
+<li><p>简介 </p>
+<ul>
+<li>附加了摄像机Camera组件的游戏对象</li>
+<li>向玩家捕获和显示世界的设备（只能显示视锥以内的物体）</li>
+<li>场景中摄像机的数量不受限制</li>
 </ul>
 </li>
-<li><em><strong>shader</strong></em>着色器：专门用来渲染3D图形的技术，可以使纹理以某种方式展现。实际就是一段嵌入到渲染管线中的程序，可以控制GPU运算图像效果的算法。</li>
-<li><em><strong>纹理</strong></em>：附加到物体表面的贴图。(albedo中设置)</li>
-<li>Shader → Material（Texture&#x2F;Color） → GameObject</li>
+<li><p>组件</p>
+<ul>
+<li>Transform 变换组件（主要是旋转和位置）</li>
+<li>Camera 摄像机：向玩家捕捉和现实世界</li>
+<li><del>FlareLayer 耀斑层</del>：激活可显示光源耀斑</li>
+<li><del>GUILayer</del> 激活可渲染二维GUI元素</li>
+<li>AudioListener音频监听器：接受场景输入的音频源AudioSource并通过计算的扬声器播放声音</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li>ClearFlags 清楚标识: 屏幕空白部分如何处理。<ul>
+<li>Skybox 天空盒： 空白部分显示天空盒图案</li>
+<li>SoildColor： 空白部分显示背景颜色</li>
+<li>…</li>
+</ul>
+</li>
+<li>colorMask Layer屏蔽</li>
+<li>Projection 透视3D&#x2F;正交2D</li>
+<li>FieldOfView&#x2F;Size 调焦</li>
+<li>ClippingPlanes 最远和最近可视距离</li>
+<li>ViewPointRect 摄像机显示场景在game面板的位置大小</li>
+</ul>
+</li>
+<li><p>天空盒 Skybox</p>
+<ul>
+<li><strong>围绕整个场景的包装器，用于模拟天空的材质</strong></li>
+<li>材质种类 Material<ul>
+<li>6 Sided </li>
+<li>Procedural</li>
+<li><del>Cubemap</del></li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>设置摄像机ClearFlags属性为Skybox</li>
+<li>摄像机（游戏对象）添加组件Skybox</li>
+<li>光照窗口：Window-Lighting-EnvironmentLighting-Skybox 天空可作为反射源将色彩反射到场景中 <em>eg.夕阳时天空是红色的情况下物体也会偏红。</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="练习：制作游戏场景小地图"><a href="#练习：制作游戏场景小地图" class="headerlink" title="练习：制作游戏场景小地图"></a>练习：制作游戏场景小地图</h2><ul>
+<li>1.创建游戏主角Player，子物体包括摄像机Camera和地图标记Mark。</li>
+<li>2.地图标记Planemark：创建物体Plane，并指定颜色蓝色。</li>
+<li>3.创建敌人，并添加地图标记红色。</li>
+<li>4.为所有地图标记指定层mark</li>
+<li>5.地图摄像机MapCamera：设置属性 ClearFlags&#x2F;DepthOnly，CullingMask&#x2F;Mask，Projection&#x2F;Orthographic，Size&#x2F;500，ViewportRect(0,0,0.3000000,0.3000000)，Depth（2）等。</li>
 </ul>
 
         <!-- 分类文章 -->
@@ -157,7 +203,7 @@
             
             
               
-                <li class="me base">
+                <li class="base">
                   <a  href="/2022/09/19/Unity-01/" class="post-categoris-bottom-link">
                   Unity_01 基础概念与材质
                 </a>
@@ -168,7 +214,7 @@
             
             
               
-                <li class="base">
+                <li class="me base">
                   <a  href="/2022/09/20/Unity-02/" class="post-categoris-bottom-link">
                   Unity-02 Shader与摄像机Camera
                 </a>
@@ -199,7 +245,7 @@
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="space-toc-text">基础概念</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%9D%90%E8%B4%A8-Material"><span class="space-toc-text">材质 Material</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%9D%90%E8%B4%A8-Material"><span class="space-toc-text">材质 Material</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%91%84%E5%83%8F%E6%9C%BA-Camera"><span class="space-toc-text">摄像机 Camera</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A%E5%88%B6%E4%BD%9C%E6%B8%B8%E6%88%8F%E5%9C%BA%E6%99%AF%E5%B0%8F%E5%9C%B0%E5%9B%BE"><span class="space-toc-text">练习：制作游戏场景小地图</span></a></li></ol>
            </div>
         
       </div>
