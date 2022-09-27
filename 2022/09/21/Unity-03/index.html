@@ -63,7 +63,7 @@
           <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
              Category
              <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85/">基本情報技術者</a></li></ul>
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93/">基本情報技術</a></li></ul>
              </div>
           </li>
         
@@ -128,58 +128,46 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="Unity引擎基础"><a href="#Unity引擎基础" class="headerlink" title="Unity引擎基础"></a>Unity引擎基础</h1><h2 id="InstantOC"><a href="#InstantOC" class="headerlink" title="InstantOC"></a>InstantOC</h2><ul>
-<li>渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。<ul>
-<li><p>游戏（CPU）↓： 判断哪那些物体需要被渲染。（视锥范围内且没有被Mask掉。）</p>
-</li>
-<li><p>图形API↓： DX（windows）或移动端（OpenGL）</p>
-</li>
-<li><p>顶点处理↓：</p>
-<ul>
+        <h1 id="Unity引擎基础"><a href="#Unity引擎基础" class="headerlink" title="Unity引擎基础"></a>Unity引擎基础</h1><h2 id="InstantOC"><a href="#InstantOC" class="headerlink" title="InstantOC"></a>InstantOC</h2><h3 id="渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。"><a href="#渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。" class="headerlink" title="渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。"></a>渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。</h3><p>游戏（CPU）↓： 判断哪那些物体需要被渲染。（视锥范围内且没有被Mask掉。）</p>
+<ol>
+<li>顶点处理↓<ul>
 <li>从CPU处接收模型顶点数据</li>
 <li>坐标系转换</li>
 </ul>
 </li>
-<li><p>图元装配↓：</p>
-<ul>
+<li>图元装配↓<ul>
 <li>组装面： 连接相邻的顶点，绘制为三角面。</li>
 </ul>
 </li>
-<li><p>光栅化↓： </p>
-<ul>
+<li>光栅化↓<ul>
 <li>计算三角面上的像素，并为后面着色阶段提供合理的插值参数。</li>
 </ul>
 </li>
-<li><p>像素处理↓：</p>
-<ul>
+<li>像素处理↓<ul>
 <li>对每个像素区域进行着色</li>
 <li>写入到缓存中</li>
 </ul>
 </li>
-<li><p>缓存↓： </p>
-<ul>
+<li>缓存↓<ul>
 <li>一个存储像素数据的内存块，可以细分为帧缓存与深度缓存等。</li>
 <li>帧缓存： 存储每个像素的色彩，即选然后的图像。帧缓存常常在显存中，显卡不断读取并输出到屏幕。</li>
 <li>深度缓存z-buffer： 存储像素的深度信息，即物体到摄像机的距离。光栅化时便计算各像素的深度值，如果新的深度值比现有值更近，则像素颜色被写到帧缓存，并替换深度缓存。</li>
 </ul>
 </li>
-<li><p>显卡：从帧缓存中读取数据并显示到屏幕。</p>
-</li>
-<li><p>DrawCall： 每帧调用显卡渲染物体的次数。Stats - Batches</p>
-</li>
-</ul>
-</li>
+<li>显卡：从帧缓存中读取数据并显示到屏幕。</li>
+</ol>
+<ul>
+<li>DrawCall：每帧调用显卡渲染物体的次数。Stats - Batches</li>
 </ul>
 <hr>
-<ul>
-<li>OcclusionCulling<ul>
+<h3 id="OcclusionCulling"><a href="#OcclusionCulling" class="headerlink" title="OcclusionCulling"></a>OcclusionCulling</h3><ol>
 <li>即时遮挡剔除： 当物体被送进渲染流水线之前，将摄像机视角看不到的物体进行剔除，从而减少了每帧渲染数据量，提高渲染性能。</li>
-<li>步骤（InstantOC）<ul>
-<li>1.创建层</li>
-<li>2.为游戏物体指定层（将参与遮挡剔除）与标签（将自动附加IOCod脚本）</li>
-<li>3.物体添加碰撞器Collider组件</li>
-<li>4.摄像机附加脚本IOCcam</li>
-</ul>
+<li>步骤（InstantOC）<ol>
+<li>创建层</li>
+<li>为游戏物体指定层（将参与遮挡剔除）与标签（将自动附加IOCod脚本）</li>
+<li>物体添加碰撞器Collider组件</li>
+<li>摄像机附加脚本IOCcam</li>
+</ol>
 </li>
 <li>属性<ul>
 <li>LayerMask： 参与遮挡剔除的游戏对象层</li>
@@ -192,25 +180,14 @@
 <li><del>RealtimeShadows： 实时阴影，如果场景需要实时阴影建议启用，确保剔除物体显示正常的阴影。</del>不建议使用，会丢失材质。</li>
 </ul>
 </li>
-<li>缺点<ul>
-<li>CPU负载升高</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<li>缺点 : CPU负载升高。</li>
+</ol>
 <hr>
-<ul>
-<li>LOD<ul>
-<li>多细节层次LevelsOfDetail<ul>
-<li>LOD技术指根据物体模型的节点在显示环境中所处的位置和重要度，决定物体渲染的资源分配，降低非重要物体的面数和细节度，从而获得高效率的渲染运算。</li>
-</ul>
-</li>
+<h3 id="LOD"><a href="#LOD" class="headerlink" title="LOD"></a>LOD</h3><ol>
+<li>多细节层次LevelsOfDetail : LOD技术指根据物体模型的节点在显示环境中所处的位置和重要度，决定物体渲染的资源分配，降低非重要物体的面数和细节度，从而获得高效率的渲染运算。</li>
 <li>步骤</li>
 <li>属性</li>
-</ul>
-</li>
-</ul>
+</ol>
 
         <!-- 分类文章 -->
         
@@ -252,6 +229,10 @@
                 </a>
                 </li>
               
+              
+            
+            
+            
               
             
             
