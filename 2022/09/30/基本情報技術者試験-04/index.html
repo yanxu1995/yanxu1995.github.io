@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Unity-03 InstantOC性能优化 |    YAN,Xu&#39;s TecBlog.</title>
+  <title>  基本情報技術者試験-04 |    YAN,Xu&#39;s TecBlog.</title>
   <meta name="description" content="YAN,Xu&#39;s TecBlog">
   <!-- 标签页图标 -->
   
@@ -63,7 +63,7 @@
           <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
              Category
              <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93/">基本情報技術</a></li></ul>
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93/">基本情報技術</a></li></ul>
              </div>
           </li>
         
@@ -117,8 +117,8 @@
 <article class="post-inner">
   <div class="post-content-outer">
     <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">Unity-03 InstantOC性能优化</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Sep 21 2022</div>
+      <div class="post-title animate__animated  animate__fadeInUp">基本情報技術者試験-04</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Sep 30 2022</div>
       
     </div>
     <div class="post-content-inner">
@@ -128,78 +128,43 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="Unity引擎基础"><a href="#Unity引擎基础" class="headerlink" title="Unity引擎基础"></a>Unity引擎基础</h1><h2 id="InstantOC"><a href="#InstantOC" class="headerlink" title="InstantOC"></a>InstantOC</h2><h3 id="渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。"><a href="#渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。" class="headerlink" title="渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。"></a>渲染管线：图形数据在GPU上经过运算处理，最后输出到屏幕的过程。</h3><p>游戏（CPU）↓： 判断哪那些物体需要被渲染。（视锥范围内且没有被Mask掉。）</p>
-<ol>
-<li>顶点处理↓<ul>
-<li>从CPU处接收模型顶点数据</li>
-<li>坐标系转换</li>
-</ul>
-</li>
-<li>图元装配↓<ul>
-<li>组装面： 连接相邻的顶点，绘制为三角面。</li>
-</ul>
-</li>
-<li>光栅化↓<ul>
-<li>计算三角面上的像素，并为后面着色阶段提供合理的插值参数。</li>
-</ul>
-</li>
-<li>像素处理↓<ul>
-<li>对每个像素区域进行着色</li>
-<li>写入到缓存中</li>
-</ul>
-</li>
-<li>缓存↓<ul>
-<li>一个存储像素数据的内存块，可以细分为帧缓存与深度缓存等。</li>
-<li>帧缓存： 存储每个像素的色彩，即选然后的图像。帧缓存常常在显存中，显卡不断读取并输出到屏幕。</li>
-<li>深度缓存z-buffer： 存储像素的深度信息，即物体到摄像机的距离。光栅化时便计算各像素的深度值，如果新的深度值比现有值更近，则像素颜色被写到帧缓存，并替换深度缓存。</li>
-</ul>
-</li>
-<li>显卡：从帧缓存中读取数据并显示到屏幕。</li>
-</ol>
-<ul>
-<li>DrawCall：每帧调用显卡渲染物体的次数。Stats - Batches</li>
-</ul>
-<hr>
-<h3 id="OcclusionCulling"><a href="#OcclusionCulling" class="headerlink" title="OcclusionCulling"></a>OcclusionCulling</h3><ol>
-<li>即时遮挡剔除： 当物体被送进渲染流水线之前，将摄像机视角看不到的物体进行剔除，从而减少了每帧渲染数据量，提高渲染性能。</li>
-<li>步骤（InstantOC）<ol>
-<li>创建层</li>
-<li>为游戏物体指定层（将参与遮挡剔除）与标签（将自动附加IOCod脚本）</li>
-<li>物体添加碰撞器Collider组件</li>
-<li>摄像机附加脚本IOCcam</li>
-</ol>
-</li>
-<li>属性<ul>
-<li>LayerMask： 参与遮挡剔除的游戏对象层</li>
-<li>IOCTag： 将为指定标签的游戏对象自动添加IOCIod脚本对象。</li>
-<li>Samples： 每帧摄像机发射的射线数目。数量多剔除效果好，但性能开销大。通常150-500之间。</li>
-<li>RaysFOV： 射线视野，应大于摄像机视野FOV。</li>
-<li>ViewDistance： 视图距离，射线长度。</li>
-<li>HideDelay： 延迟隐藏，当物体被剔除时延迟的帧数，建议50-100之间。</li>
-<li>PreCull Check： 检查采集信息，建议勾选，提高剔除效率。</li>
-<li><del>RealtimeShadows： 实时阴影，如果场景需要实时阴影建议启用，确保剔除物体显示正常的阴影。</del>不建议使用，会丢失材质。</li>
-</ul>
-</li>
-<li>缺点 : CPU负载升高。</li>
-</ol>
-<hr>
-<h3 id="LOD"><a href="#LOD" class="headerlink" title="LOD"></a>LOD</h3><ol>
-<li>多细节层次LevelsOfDetail : LOD技术指根据物体模型的节点在显示环境中所处的位置和重要度，决定物体渲染的资源分配，降低非重要物体的面数和细节度，从而获得高效率的渲染运算。</li>
-<li>步骤</li>
-<li>属性</li>
-</ol>
-
+        <h1 id="基礎理論"><a href="#基礎理論" class="headerlink" title="基礎理論"></a>基礎理論</h1><h2 id="集合と論理演算"><a href="#集合と論理演算" class="headerlink" title="集合と論理演算"></a>集合と論理演算</h2><h3 id="命題同士の関係を示した論理式"><a href="#命題同士の関係を示した論理式" class="headerlink" title="命題同士の関係を示した論理式"></a>命題同士の関係を示した論理式</h3><p>正誤が明確にできる文章や条件式を命題と呼び、「真（true）」または「偽（false）」の値を持つ。<br>ここで、真（＝１）は正しいこと、偽（＝０）は正しくないことを指す。</p>
+<table>
+<thead>
+<tr>
+<th>論理式</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>論理積（AND）</td>
+<td>かつ</td>
+</tr>
+<tr>
+<td>論理和（OR）</td>
+<td>または</td>
+</tr>
+<tr>
+<td>論理否定（NOT）</td>
+<td>でない</td>
+</tr>
+<tr>
+<td>含意</td>
+<td>含む</td>
+</tr>
+</tbody></table>
+<h3 id="集合の概念と演算の種類"><a href="#集合の概念と演算の種類" class="headerlink" title="集合の概念と演算の種類"></a>集合の概念と演算の種類</h3>
         <!-- 分类文章 -->
         
           <div class="post-categoris-bottom">
-            <div class="post-categoris-name">Unity</div>
+            <div class="post-categoris-name">基本情報技術</div>
             <ul>
             
             
               
                 <li class="base">
-                  <a  href="/2022/09/19/Unity-01/" class="post-categoris-bottom-link">
-                  Unity_01 基础概念与材质
+                  <a  href="/2022/09/20/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-01/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-01　コンピューターで「数」を扱う
                 </a>
                 </li>
               
@@ -209,8 +174,8 @@
             
               
                 <li class="base">
-                  <a  href="/2022/09/20/Unity-02/" class="post-categoris-bottom-link">
-                  Unity-02 Shader与摄像机Camera
+                  <a  href="/2022/09/23/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-02/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-02　二進数による様々な数値の表現
                 </a>
                 </li>
               
@@ -218,21 +183,24 @@
             
             
             
+              
+                <li class="base">
+                  <a  href="/2022/09/28/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-03/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-03
+                </a>
+                </li>
+              
               
             
             
             
               
                 <li class="me base">
-                  <a  href="/2022/09/21/Unity-03/" class="post-categoris-bottom-link">
-                  Unity-03 InstantOC性能优化
+                  <a  href="/2022/09/30/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-04/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-04
                 </a>
                 </li>
               
-              
-            
-            
-            
               
             
             
@@ -245,7 +213,7 @@
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#InstantOC"><span class="space-toc-text">InstantOC</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E9%9B%86%E5%90%88%E3%81%A8%E8%AB%96%E7%90%86%E6%BC%94%E7%AE%97"><span class="space-toc-text">集合と論理演算</span></a></li></ol>
            </div>
         
       </div>
