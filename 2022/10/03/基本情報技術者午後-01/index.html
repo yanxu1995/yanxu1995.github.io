@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  基本情報技術者試験-03　シフト演算 |    YAN,Xu&#39;s TecBlog.</title>
+  <title>  基本情報技術者午後-01 |    YAN,Xu&#39;s TecBlog.</title>
   <meta name="description" content="YAN,Xu&#39;s TecBlog">
   <!-- 标签页图标 -->
   
@@ -117,8 +117,8 @@
 <article class="post-inner">
   <div class="post-content-outer">
     <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">基本情報技術者試験-03　シフト演算</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Sep 28 2022</div>
+      <div class="post-title animate__animated  animate__fadeInUp">基本情報技術者午後-01</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Oct 03 2022</div>
       
     </div>
     <div class="post-content-inner">
@@ -128,56 +128,42 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="基礎理論"><a href="#基礎理論" class="headerlink" title="基礎理論"></a>基礎理論</h1><h2 id="シフト演算"><a href="#シフト演算" class="headerlink" title="シフト演算"></a>シフト演算</h2><h3 id="二進数の乗算・除算を行うシフト演算"><a href="#二進数の乗算・除算を行うシフト演算" class="headerlink" title="二進数の乗算・除算を行うシフト演算"></a>二進数の乗算・除算を行うシフト演算</h3><p><strong>シフト演算</strong>は、桁を左右にずらすことでべき乗の計算をする方法である。<br><strong>右にｎビットシフト</strong> → 元の数値の$2^{-n}$になる。<br><strong>左にｎビットシフト</strong> → 元の数値の$2^n$になる。</p>
-<blockquote>
-<p>オーバーフローが発生した場合、シフト結果が正しい値にならない。<br>例：八ビットの場合は<br>　　①論理シフト：0～$（2^8-1）$<br>　　②算術シフト：$（-2^7）$～$（2^7-1）$</p>
-</blockquote>
-<h3 id="論理シフトと算術シフト"><a href="#論理シフトと算術シフト" class="headerlink" title="論理シフトと算術シフト"></a>論理シフトと算術シフト</h3><p><strong>論理シフト</strong>は全ビットが対象とするので負の数を扱うことができない。<br><strong>算術シフト</strong>は符号ビットが固定するので負の数も扱える。</p>
-<h4 id="論理シフト"><a href="#論理シフト" class="headerlink" title="論理シフト"></a>論理シフト</h4><ul>
-<li>論理右シフト：二進数の全ビットをそのまま右へ移動し、空いた左端ビットには0が入る。</li>
-<li>論理左シフト：二進数の全ビットをそのまま左へ移動し、空いた右端ビットには0が入る。</li>
-</ul>
-<h4 id="算術シフト"><a href="#算術シフト" class="headerlink" title="算術シフト"></a>算術シフト</h4><ul>
-<li>算術右シフト：符号付き二進数の符号ビット以外ぼすべてのビットをそのまま右へ移動し、左空いたビットには、符号ビットと同じ値を入る。</li>
-<li>算術左シフト：符号付き二進数の符号ビット以外ぼすべてのビットをそのまま左へ移動し、右空いたビットには、0が入る。</li>
-</ul>
-<h3 id="シフトを使った計算問題の解法"><a href="#シフトを使った計算問題の解法" class="headerlink" title="シフトを使った計算問題の解法"></a>シフトを使った計算問題の解法</h3><blockquote>
-<p>１２倍＝８倍＋４倍<br>１８倍&#x3D;（８倍＋１倍）ｘ２倍<br>…</p>
-</blockquote>
-
+        <h1 id="擬似言語によるアルゴリズムの表記"><a href="#擬似言語によるアルゴリズムの表記" class="headerlink" title="擬似言語によるアルゴリズムの表記"></a>擬似言語によるアルゴリズムの表記</h1><h1 id="基本アルゴリズム（整列・探索）"><a href="#基本アルゴリズム（整列・探索）" class="headerlink" title="基本アルゴリズム（整列・探索）"></a>基本アルゴリズム（整列・探索）</h1><h2 id="交換法（バブルソート）"><a href="#交換法（バブルソート）" class="headerlink" title="交換法（バブルソート）"></a>交換法（バブルソート）</h2>
         <!-- 分类文章 -->
         
           <div class="post-categoris-bottom">
-            <div class="post-categoris-name">基本情報午前</div>
+            <div class="post-categoris-name">基本情報午後</div>
             <ul>
             
             
               
-                <li class="base">
-                  <a  href="/2022/09/20/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-01/" class="post-categoris-bottom-link">
-                  基本情報技術者試験-01　コンピューターで「数」を扱う
-                </a>
-                </li>
-              
+            
+            
+            
               
             
             
             
               
-                <li class="base">
-                  <a  href="/2022/09/23/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-02/" class="post-categoris-bottom-link">
-                  基本情報技術者試験-02　二進数による様々な数値の表現
-                </a>
-                </li>
+            
+            
+            
               
+            
+            
+            
+              
+            
+            
+            
               
             
             
             
               
                 <li class="me base">
-                  <a  href="/2022/09/28/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-03/" class="post-categoris-bottom-link">
-                  基本情報技術者試験-03　シフト演算
+                  <a  href="/2022/10/03/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E5%8D%88%E5%BE%8C-01/" class="post-categoris-bottom-link">
+                  基本情報技術者午後-01
                 </a>
                 </li>
               
@@ -185,36 +171,6 @@
             
             
             
-              
-                <li class="base">
-                  <a  href="/2022/09/30/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-04/" class="post-categoris-bottom-link">
-                  基本情報技術者試験-04　集合と論理演算
-                </a>
-                </li>
-              
-              
-            
-            
-            
-              
-            
-            
-            
-              
-            
-            
-            
-              
-            
-            
-            
-              
-                <li class="base">
-                  <a  href="/2022/10/03/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-05/" class="post-categoris-bottom-link">
-                  基本情報技術者試験-05　確率と統計
-                </a>
-                </li>
-              
               
             
             
@@ -231,7 +187,7 @@
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E3%82%B7%E3%83%95%E3%83%88%E6%BC%94%E7%AE%97"><span class="space-toc-text">シフト演算</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E4%BA%A4%E6%8F%9B%E6%B3%95%EF%BC%88%E3%83%90%E3%83%96%E3%83%AB%E3%82%BD%E3%83%BC%E3%83%88%EF%BC%89"><span class="space-toc-text">交換法（バブルソート）</span></a></li></ol>
            </div>
         
       </div>
