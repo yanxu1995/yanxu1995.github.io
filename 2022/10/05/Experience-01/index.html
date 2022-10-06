@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Unity |    YAN,Xu&#39;s TecBlog.</title>
+  <title>  Experience-01 |    YAN,Xu&#39;s TecBlog.</title>
   <meta name="description" content="YAN,Xu&#39;s TecBlog">
   <!-- 标签页图标 -->
   
@@ -63,7 +63,7 @@
           <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
              Category
              <div class="categories-outer " id="sort-div">
-               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E5%8D%88%E5%89%8D/">基本情報午前</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E5%8D%88%E5%BE%8C/">基本情報午後</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E9%81%8E%E5%8E%BB%E5%95%8F/">基本情報過去問</a></li></ul>
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding-experience/">Coding experience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%83%85%E9%81%8E%E5%8E%BB%E5%95%8F/">基情過去問</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E5%8D%88%E5%89%8D/">基本情報午前</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E5%8D%88%E5%BE%8C/">基本情報午後</a></li></ul>
              </div>
           </li>
         
@@ -114,33 +114,105 @@
 <div class="body-outer">
   <div class="body-inner">
     
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">Experience-01</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Oct 05 2022</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
 
-  <section class="archive-outer">
-    <section class="archive-inner">
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
         
+        <h1 id="Unity"><a href="#Unity" class="headerlink" title="Unity"></a>Unity</h1><h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><h3 id="Unity-TextMeshProのコードによるテキスト内容の修正"><a href="#Unity-TextMeshProのコードによるテキスト内容の修正" class="headerlink" title="Unity TextMeshProのコードによるテキスト内容の修正"></a>Unity TextMeshProのコードによるテキスト内容の修正</h3><p>1.TMProコンポーネントをインポートする。</p>
+<pre><code class="C#">using TMPro;
+</code></pre>
+<p>2.テキスト内容を修正する。</p>
+<pre><code class="C#">// If you want to change the text from a TextMeshProObject:
+public TextMeshPro TextMeshProObject;
+TextMeshProObject = GetComponent&lt;TextMeshPro&gt;();
+TextMeshProObject.text = &quot;Hello&quot;;
+
+// If you want to change the text from a gameobject:
+TextMeshProUGUI TextMeshProLable = YourGameObject.GetComponent&lt;TextMeshProUGUI&gt;();
+TextMeshProLable.text = &quot;Your Text&quot;
+</code></pre>
+
+        <!-- 分类文章 -->
         
-        
-        
+          <div class="post-categoris-bottom">
+            <div class="post-categoris-name">Coding experience</div>
+            <ul>
             
             
-        <div class="archive-name animate__animated  animate__fadeInUp">2022</div>
-        
-          <a  href="/2022/10/01/Unity-01/">
-          <div class="archive-post animate__animated  animate__fadeInUp">
-            <div class="archive-post-title">Unity-01 インストールと基本的な操作方法</div>
-            <div class="archive-post-date">10-01</div>
-            <!-- Oct 1 -->
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+              
+                <li class="me base">
+                  <a  href="/2022/10/05/Experience-01/" class="post-categoris-bottom-link">
+                  Experience-01
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+            
+            
+            </ul>
+
           </div>
-          </a>
+
         
+      </div>
+      <div class="post-content-inner-space">
         
-    </section>
-</section>
-
-
-
-
-
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#UI"><span class="space-toc-text">UI</span></a></li></ol>
+           </div>
+        
+      </div>
+   </div>
+    <!-- 评论 -->
+    
+  </div>
+</article>
   </div>
 </div>
 
