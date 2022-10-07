@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Experience-01 |    YAN,Xu&#39;s TecBlog.</title>
+  <title>  基本情報技術者試験-07　コンピューターの種類② |    YAN,Xu&#39;s TecBlog.</title>
   <meta name="description" content="YAN,Xu&#39;s TecBlog">
   <!-- 标签页图标 -->
   
@@ -117,8 +117,8 @@
 <article class="post-inner">
   <div class="post-content-outer">
     <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">Experience-01</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Oct 05 2022</div>
+      <div class="post-title animate__animated  animate__fadeInUp">基本情報技術者試験-07　コンピューターの種類②</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Oct 07 2022</div>
       
     </div>
     <div class="post-content-inner">
@@ -128,31 +128,87 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="Unity"><a href="#Unity" class="headerlink" title="Unity"></a>Unity</h1><h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><h3 id="Unity-TextMeshProのコードによるテキスト内容の修正"><a href="#Unity-TextMeshProのコードによるテキスト内容の修正" class="headerlink" title="Unity TextMeshProのコードによるテキスト内容の修正"></a>Unity TextMeshProのコードによるテキスト内容の修正</h3><p>1.TMProコンポーネントをインポートする。</p>
-<pre><code class="C#">using TMPro;
-</code></pre>
-<p>2.テキスト内容を修正する。</p>
-<pre><code class="C#">// If you want to change the text from a TextMeshProObject:
-public TextMeshPro TextMeshProObject;
-TextMeshProObject = GetComponent&lt;TextMeshPro&gt;();
-TextMeshProObject.text = &quot;Hello&quot;;
-
-// If you want to change the text from a gameobject:
-TextMeshProUGUI TextMeshProLable = YourGameObject.GetComponent&lt;TextMeshProUGUI&gt;();
-TextMeshProLable.text = &quot;Your Text&quot;
-</code></pre>
+        <h1 id="コンピューター構成要素"><a href="#コンピューター構成要素" class="headerlink" title="コンピューター構成要素"></a>コンピューター構成要素</h1><h2 id="バス"><a href="#バス" class="headerlink" title="バス"></a>バス</h2><p>コンピューター内部の書く装置は、バスと呼ばれる共通の伝送路を介して接続されている。<br>バスのシュルは次のようにある。</p>
+<ul>
+<li><p>CPUを中心とした位置づけによる種類</p>
+<ul>
+<li>内部バス（CPU内部バス）：制御装置、演算装置、キャッシュ、レジスタなどを接続するため</li>
+<li>外部バス：主記憶装置や補助記憶装置を接続するため</li>
+</ul>
+</li>
+<li><p>やり取りする情報による種類</p>
+<ul>
+<li>アドレスバス：CPUから主記憶、補助記憶、出入力装置に向けたアドレス情報をやり取りする。</li>
+<li>コントロールバス：CPUから制御情報をやり取りするためのバス。</li>
+<li>データバス：CPUからデータ情報やり取りを行うためのバス。</li>
+</ul>
+</li>
+<li><p>接続装置による種類</p>
+<ul>
+<li>システムバス</li>
+<li>入出力バス</li>
+</ul>
+</li>
+</ul>
+<p>多くのパソコンでは、マザーボード上に二つのブリッジを持ち、高速なシステムバスを<strong>ノースブリッジ</strong>、低速な入出力バスを<strong>サウスブリッジ</strong>を担当する。<br><strong>ノースブリッジ</strong>は、メモリバス、グラフィックスカードなどを接続するパラレルバスがある。<br><strong>サウスブリッジ</strong>は、PCIバス、入出力装置用バス、シリアルバスなどがある。</p>
+<p>※DMA（direct memory access）方式は、DMA転送を行うアクセスモード。主記憶装置間、主記憶装置と入出力装置間でデータをやり取り方式である。（PIO programmed IO 方式と反対）</p>
+<p>入出力インタフェース規格は、周辺装置を接続するための共通規格である。</p>
+<ul>
+<li><p>シリアル転送:一本のケーブルで一ビットずつ送信するシリアル転送</p>
+</li>
+<li><p>パラレル転送：複数のケーブルでまとめて送信する</p>
+</li>
+<li><p>USB（universal serial bus）:</p>
+</li>
+</ul>
 
         <!-- 分类文章 -->
         
           <div class="post-categoris-bottom">
-            <div class="post-categoris-name">Coding experience</div>
+            <div class="post-categoris-name">基本情報午前</div>
             <ul>
             
             
               
+                <li class="base">
+                  <a  href="/2022/09/20/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-01/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-01　離散数学①
+                </a>
+                </li>
+              
+              
             
             
             
+              
+                <li class="base">
+                  <a  href="/2022/09/23/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-02/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-02　離散数学②
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+                <li class="base">
+                  <a  href="/2022/09/28/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-03/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-03　離散数学③
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+                <li class="base">
+                  <a  href="/2022/09/30/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-04/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-04　離散数学④
+                </a>
+                </li>
+              
               
             
             
@@ -166,25 +222,9 @@ TextMeshProLable.text = &quot;Your Text&quot;
             
             
               
-            
-            
-            
-              
-            
-            
-            
-              
-            
-            
-            
-              
-            
-            
-            
-              
-                <li class="me base">
-                  <a  href="/2022/10/05/Experience-01/" class="post-categoris-bottom-link">
-                  Experience-01
+                <li class="base">
+                  <a  href="/2022/10/03/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-05/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-05　応用数学①
                 </a>
                 </li>
               
@@ -203,6 +243,28 @@ TextMeshProLable.text = &quot;Your Text&quot;
               
             
             
+            
+              
+                <li class="base">
+                  <a  href="/2022/10/06/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-06/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-06　コンピューターの種類①
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+                <li class="me base">
+                  <a  href="/2022/10/07/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-07/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-07　コンピューターの種類②
+                </a>
+                </li>
+              
+              
+            
+            
             </ul>
 
           </div>
@@ -212,7 +274,7 @@ TextMeshProLable.text = &quot;Your Text&quot;
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#UI"><span class="space-toc-text">UI</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E3%83%90%E3%82%B9"><span class="space-toc-text">バス</span></a></li></ol>
            </div>
         
       </div>
