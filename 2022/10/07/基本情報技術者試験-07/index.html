@@ -154,13 +154,83 @@
 <p>※DMA（direct memory access）方式は、DMA転送を行うアクセスモード。主記憶装置間、主記憶装置と入出力装置間でデータをやり取り方式である。（PIO programmed IO 方式と反対）</p>
 <p>入出力インタフェース規格は、周辺装置を接続するための共通規格である。</p>
 <ul>
-<li><p>シリアル転送:一本のケーブルで一ビットずつ送信するシリアル転送</p>
+<li>シリアル転送:一本のケーブルで一ビットずつ送信するシリアル転送</li>
+<li>パラレル転送：複数のケーブルでまとめて送信する</li>
+</ul>
+<hr>
+<h2 id="出入力デバイス"><a href="#出入力デバイス" class="headerlink" title="出入力デバイス"></a>出入力デバイス</h2><p>有線インタフェース規格</p>
+<ul>
+<li>USB（universal serial bus）:バスパワー方式とホットプラグ機能を対応するシリアルインタフェース規格。<ul>
+<li>USB1.0：転送速度は12Mbps。</li>
+<li>USB2.0：転送速度は480Mbps。</li>
+<li>USB3.0：全二重送信を行う高速シリアルインタフェース規格。5Gbps－10Gbps。</li>
+<li>USBのコネクタ：多い。</li>
+</ul>
 </li>
-<li><p>パラレル転送：複数のケーブルでまとめて送信する</p>
-</li>
-<li><p>USB（universal serial bus）:</p>
+<li>シリアルATA（SATA）：ハードディスクの接続用のATAの高速版。3.0の転送速度は6Gbps。</li>
+<li>IEEE1394：高速シリアルインタフェース規格。</li>
+<li>HDMI：一本のケーブルで映像と音声、制御用信号を送受信できる。</li>
+<li>DisplayPort：パソコンやAV機器とディスプレイ装置を接続するためのデジタル接続規格。</li>
+</ul>
+<p>無線インタフェース規格</p>
+<ul>
+<li>IrDA：1m程度の近距離赤外線通信規格。</li>
+<li>Bluetooth：電波を利用した近距離無線通信規格。10m～数十m。最大7台。</li>
+<li>Zigbee：センサーネットワークでの利用を前提をする近距離無線通信。転送速度が低く、低消費電力で低コストである。中継機能を持つ。</li>
+<li>NFC：電波によって近距離。10cm。非接触型ICカードの接続規格。RFICを利用している。</li>
+</ul>
+<hr>
+<p>入出力装置の接続形態</p>
+<ul>
+<li>USB（star接続、ツリー接続）：一台のUSBハブを使ったstar接続は最大127台／複数のハブを使ったツリー接続もでき、５台まで。カスケード接続。</li>
+<li>シリアルATA：コントローラと装置一対一で接続する。</li>
+<li>IEEE1394：デイジーチェーン式とツリー接続。</li>
+</ul>
+<hr>
+<h2 id="出入力装置"><a href="#出入力装置" class="headerlink" title="出入力装置"></a>出入力装置</h2><p>入力装置</p>
+<ul>
+<li>キーボード</li>
+<li>ポインティングデバイス：マウス、トラックボール、タッチパネル、デジタイザ&#x2F;ペンタブレット。</li>
+<li>図形・画像入力装置：スキャナ、OCR、OMR。</li>
+<li>ICカード読み取り装置</li>
+<li>磁気カード読み取り装置</li>
+<li>生体認証装置</li>
+<li>バーコードリーダ</li>
+</ul>
+<p>※デバイスドライバ<br>※タッチパネル方式：静電容量方式、抵抗膜方式、電磁誘導方式。</p>
+<p>出力装置</p>
+<ul>
+<li>ディスプレイ装置：液晶ディスプレイ&#x2F;有機EL</li>
+<li>プリンター&#x2F;プロッタ<ul>
+<li>インパクトプリンタ：インクをついた字型を紙に打ち付ける。</li>
+<li>ノンインパクトプリンタ：インクやトナーを噴射して字型作る。</li>
+<li>シリアルプリンタ（一文字単位）&#x2F;ラインプリンタ（一行単位）&#x2F;ページプリンタ（ページ単位）</li>
+</ul>
 </li>
 </ul>
+<p>画像データの容量計算<br>画像データ量（VRAM）＝画像の総ドット数　*　色情報</p>
+<p><strong>補助記憶装置</strong>は、電源を切っても記憶が残る不揮発性の記憶装置で、主にデータやプログラムの保存に使われる。</p>
+<p><strong>ハードディスクHDD</strong><br>磁気ディスク装置の記憶容量：一セクタあたりの記憶容量　X　一トラックあたりのセクタ数　X　一シリンダあたりのトラック数　X　磁気ディスク全体のシリンダ数<br>アクセス時間</p>
+<ul>
+<li>平均位置決め時間（シーク時間）：アクセスアームが動いて磁気ヘッドが目的のデータのあるトラック上に移動するまでの時間。</li>
+<li>平均回転待ち時間（サーチ時間）：目的のデータが磁気ヘッドの真下に回転してくるまでの時間。1&#x2F;2回転に要する時間。</li>
+<li>データ転送時間：転送データ量&#x2F;データ転送速度</li>
+<li>平均待ち時間：平均位置決め時間＋平均回転待ち時間</li>
+<li>アクセス時間：平均位置決め時間＋平均回転待ち時間＋データ転送時間</li>
+</ul>
+<p><strong>光ディスク</strong><br>レーザ光を用いて、樹脂のディスクにデータを読み書きする</p>
+<ul>
+<li>読み出し専用型：新な書き込みや消去できない</li>
+<li>追記型：追加の書き込みのみ可能で消去できない</li>
+<li>書き換え型：消去も書き込みも可能</li>
+</ul>
+<p><strong>SSD</strong></p>
+<p><strong>フラッシュメモリカード</strong></p>
+<ul>
+<li>SDカード</li>
+<li>コンパクトフラッシュ</li>
+</ul>
+<p><strong>磁気テープ</strong></p>
 
         <!-- 分类文章 -->
         
@@ -265,6 +335,36 @@
               
             
             
+            
+              
+                <li class="base">
+                  <a  href="/2022/10/09/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-08/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-08　システムの構成要素
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+                <li class="base">
+                  <a  href="/2022/10/10/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-09/" class="post-categoris-bottom-link">
+                  基本情報技術者試験-09　ソフトウェア
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
             </ul>
 
           </div>
@@ -274,7 +374,7 @@
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E3%83%90%E3%82%B9"><span class="space-toc-text">バス</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E3%83%90%E3%82%B9"><span class="space-toc-text">バス</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%87%BA%E5%85%A5%E5%8A%9B%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9"><span class="space-toc-text">出入力デバイス</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%87%BA%E5%85%A5%E5%8A%9B%E8%A3%85%E7%BD%AE"><span class="space-toc-text">出入力装置</span></a></li></ol>
            </div>
         
       </div>
