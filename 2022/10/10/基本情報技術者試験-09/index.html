@@ -68,6 +68,12 @@
           </li>
         
         
+        <a href="/search">
+          <li class="menu-li  animate__animated  animate__fadeInUp">
+            <i class="ri-search-line"></i>
+          </li>
+        </a>
+        
           <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
             <i class="ri-menu-line"></i>
           </li>
@@ -106,6 +112,12 @@
     </a>
   
   
+    <a href="/search">  
+      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
+        <i class="ri-search-line"></i>
+      </div>
+    </a>
+    
   </div>
 
 
@@ -182,7 +194,8 @@
 <li>外部割り込み：コンピューターシステム以外からの割り込み</li>
 </ul>
 <p>※　オーバヘッド時間：制御プログラムがCPUを使用している時間。&#x2F;生産性のない時間から減らすことを求められる。<br>※　PSW（Program Status Word）：プログラム状況語<br>※　割り込みマスタ：割り込みに優先順位を与えるための機能<br>※　ポーリング機能：入出力状態を一定周期で問い合わせることで、処理を行うタイミングを図る。</p>
-<h3 id="データ管理"><a href="#データ管理" class="headerlink" title="データ管理"></a>データ管理</h3><h3 id="入出力管理"><a href="#入出力管理" class="headerlink" title="入出力管理"></a>入出力管理</h3><h3 id="記憶管理"><a href="#記憶管理" class="headerlink" title="記憶管理"></a>記憶管理</h3><p>記憶管理：実記憶管理&#x2F;仮想記憶管理</p>
+<h3 id="データ管理"><a href="#データ管理" class="headerlink" title="データ管理"></a>データ管理</h3><p>汎用のコンピューターのOSは、</p>
+<h3 id="入出力管理"><a href="#入出力管理" class="headerlink" title="入出力管理"></a>入出力管理</h3><h3 id="記憶管理"><a href="#記憶管理" class="headerlink" title="記憶管理"></a>記憶管理</h3><p>記憶管理：実記憶管理&#x2F;仮想記憶管理</p>
 <p>実記憶管理<br>プログラム実行する際に論理アドレスから物理アドレスへの変換が必要になる。</p>
 <ul>
 <li>区画方式（パーディション）：記憶領域をいくつかの区画に分け、区画単位にプログラムを格納する方式。&#x2F;記憶領域の断片化（フラグメンテーション）が発生→コンパクション。&#x2F;固定区画方式と可変区分方式。</li>
@@ -192,13 +205,22 @@
 <p>※　メモリリーク：プログラムが終了時に使っていた記憶空間を解放しない。</p>
 <p>仮想記憶は、実際の主記憶装置の容量より大きな記憶空間を作りだし、主記憶装置の容量に制限されずに、プログラムの実行を行う方式である。</p>
 <ul>
-<li>ページング方式：仮想記憶と実記憶を固定長のページ単位に分割し、ページ番号と実記憶上のページ枠をページテーブルで対応つける。<ul>
+<li><p>ページング方式：仮想記憶と実記憶を固定長のページ単位に分割し、ページ番号と実記憶上のページ枠をページテーブルで対応つける。</p>
+<ul>
 <li>ページイン：実行必要なページは、必要になった時点で仮想記憶上から実記憶上ひぇ読み込まれる。</li>
 <li>ページフォルト：実記憶に存在しないページが参照される。</li>
 <li>ページアウト：必要なページを仮想記憶上に書き戻すこと。</li>
 </ul>
 </li>
+<li><p>ページ書き換えアルゴリズム（リプレーススメント）</p>
+<ul>
+<li>FIFO</li>
+<li>LRU</li>
+<li>LFU</li>
 </ul>
+</li>
+</ul>
+<p>※　仮想記憶の特徴：大きいけど遅い<br>※　動的アドレス変換機構DAT（dynamic address translation）：プログラム実行時、命令で使用している稼働アドレスを物理アドレスへ変換するハードウェア。<br>※　スラッシング：ページングの多発二より、システムの性能が極端に低下する現象。</p>
 <h3 id="ネットワーク管理"><a href="#ネットワーク管理" class="headerlink" title="ネットワーク管理"></a>ネットワーク管理</h3><h3 id="運用管理"><a href="#運用管理" class="headerlink" title="運用管理"></a>運用管理</h3><h3 id="ユーザ管理"><a href="#ユーザ管理" class="headerlink" title="ユーザ管理"></a>ユーザ管理</h3><h3 id="セキュリティ管理"><a href="#セキュリティ管理" class="headerlink" title="セキュリティ管理"></a>セキュリティ管理</h3><h3 id="障害管理"><a href="#障害管理" class="headerlink" title="障害管理"></a>障害管理</h3>
         <!-- 分类文章 -->
         
@@ -285,7 +307,7 @@
               
                 <li class="base">
                   <a  href="/2022/10/06/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-06/" class="post-categoris-bottom-link">
-                  基本情報技術者試験-06　コンピューターの種類①
+                  基本情報技術者試験-06　コンピューターの構成要素①
                 </a>
                 </li>
               
@@ -296,7 +318,7 @@
               
                 <li class="base">
                   <a  href="/2022/10/07/%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93-07/" class="post-categoris-bottom-link">
-                  基本情報技術者試験-07　コンピューターの種類②
+                  基本情報技術者試験-07　コンピューターの構成要素②
                 </a>
                 </li>
               
@@ -331,6 +353,18 @@
             
             
               
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+            
             
             
             </ul>
