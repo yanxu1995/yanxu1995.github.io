@@ -2,6 +2,31 @@
 <search> 
   
   
+    
+    <entry>
+      <title>【UnityTips】Variable-angle sector indicator / UnityTips之可变角度的扇形指示器</title>
+      <link href="/2022/11/30/unityTips01/"/>
+      <url>/2022/11/30/unityTips01/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Create-the-Sector-Indicator"><a href="#Create-the-Sector-Indicator" class="headerlink" title="Create the Sector Indicator"></a>Create the Sector Indicator</h2><ol><li><p>Create a Plane &#x2F; 创建一个Plane</p></li><li><p>Create a Material &#x2F; 创建一个Material</p></li><li><p>Create a Shader with the following content. &#x2F; 创建一个Shader，内容如下：</p><pre><code class="C#">Shader &quot;Custom/Indicator&quot; &#123;    Properties &#123;          _MainTex(&quot;Main Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;        _Color (&quot;Color&quot;, Color) = (0.17,0.36,0.81,0.0)        _Angle (&quot;Angle&quot;, Range(0, 360)) = 60        _Gradient (&quot;Gradient&quot;, Range(0, 1)) = 0    &#125;    SubShader &#123;    Tags &#123; &quot;Queue&quot;=&quot;Transparent&quot; &quot;RenderType&quot;=&quot;Transparent&quot; &quot;IgnoreProjector&quot;=&quot;True&quot; &#125;        Pass &#123;            ZWrite Off            Blend SrcAlpha OneMinusSrcAlpha            CGPROGRAM            #pragma vertex vert            #pragma fragment frag            #include &quot;UnityCG.cginc&quot;            sampler2D _MainTex;            float4 _Color;            float _Angle;            float _Gradient;            struct fragmentInput &#123;                float4 pos : SV_POSITION;                float2 uv : TEXTCOORD0;            &#125;;            fragmentInput vert (appdata_base v)            &#123;                fragmentInput o;                o.pos = mul (UNITY_MATRIX_MVP, v.vertex);                o.uv = v.texcoord.xy;                return o;            &#125;            fixed4 frag(fragmentInput i) : SV_Target &#123;                float distance = sqrt(pow(i.uv.x - 0.5, 2) + pow(i.uv.y - 0.5, 2));                if(distance &gt; 0.5f)&#123;                    discard;                &#125;                float grediant = (1 - distance - 0.5 * _Gradient) / 0.5;                fixed4 result = tex2D(_MainTex, i.uv) * _Color * fixed4(1,1,1, grediant);                float x = i.uv.x;                float y = i.uv.y;                float deg2rad = 0.017453;                  if(_Angle &gt; 180)&#123;                    if(y &gt; 0.5 &amp;&amp; abs(0.5 - y) &gt;= abs(0.5 - x) / tan((180 - _Angle / 2) * deg2rad))                        discard;                &#125;                else                 &#123;                    if(y &gt; 0.5 || abs(0.5 -y) &lt; abs(0.5 - x) / tan(_Angle / 2 * deg2rad))                        discard;                &#125;                return result;            &#125;            ENDCG        &#125;    &#125;      FallBack &quot;Diffuse&quot;&#125;</code></pre></li><li><p>Assign Shader to Material and Material to Plane. &#x2F; 将Shader赋予Material，将Material赋予Plane。</p></li></ol><h2 id="Modify-the-Sector-Indicator"><a href="#Modify-the-Sector-Indicator" class="headerlink" title="Modify the Sector Indicator"></a>Modify the Sector Indicator</h2><ul><li>改变颜色</li></ul><pre><code class="c#">gameObject.GetComponent&lt;Renderer&gt;().material.color = Color.red;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> UnityTips </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UnityTips </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
